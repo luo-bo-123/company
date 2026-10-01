@@ -1,0 +1,58 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+locale: "zh-CN"
+
+collections:
+  - name: "site"
+    label: "网站内容"
+    files:
+      - name: "general"
+        label: "公司介绍"
+        file: "content/site.json"
+        fields:
+          - { label: "公司名称", name: "companyName", widget: "string" }
+          - { label: "页脚公司名称", name: "companyNameFooter", widget: "string" }
+          - { label: "顶部徽章文字", name: "badgeText", widget: "string" }
+          - { label: "首页大标题第一行", name: "heroLine1", widget: "string" }
+          - { label: "首页大标题第二行（橙色）", name: "heroLine2", widget: "string" }
+          - { label: "首页大标题结尾", name: "heroLine3", widget: "string" }
+          - { label: "首页副标题", name: "heroLead", widget: "text" }
+          - { label: "右侧卡片标签", name: "artCardTag", widget: "string" }
+          - { label: "右侧卡片数字", name: "artCardNum", widget: "string" }
+          - { label: "右侧卡片说明", name: "artCardLabel", widget: "string" }
+          - { label: "浮动标签 A", name: "chipA", widget: "string" }
+          - { label: "浮动标签 B", name: "chipB", widget: "string" }
+          - { label: "关于我们标题", name: "aboutTitle", widget: "string" }
+          - { label: "关于我们段落 1", name: "aboutP1", widget: "text" }
+          - { label: "关于我们段落 2", name: "aboutP2", widget: "text" }
+          - { label: "引用语", name: "quoteText", widget: "text" }
+          - { label: "业务板块标题", name: "businessTitle", widget: "string" }
+          - { label: "业务板块副标题", name: "businessSub", widget: "text" }
+          - { label: "业务 1 标题", name: "b1Title", widget: "string" }
+          - { label: "业务 1 描述", name: "b1Desc", widget: "text" }
+          - { label: "业务 2 标题", name: "b2Title", widget: "string" }
+          - { label: "业务 2 描述", name: "b2Desc", widget: "text" }
+          - { label: "业务 3 标题", name: "b3Title", widget: "string" }
+          - { label: "业务 3 描述", name: "b3Desc", widget: "text" }
+          - { label: "业务 4 标题", name: "b4Title", widget: "string" }
+          - { label: "业务 4 描述", name: "b4Desc", widget: "text" }
+          - { label: "数据 1 数字", name: "stat1Num", widget: "string" }
+          - { label: "数据 1 标签", name: "stat1Label", widget: "string" }
+          - { label: "数据 2 数字", name: "stat2Num", widget: "string" }
+          - { label: "数据 2 标签", name: "stat2Label", widget: "string" }
+          - { label: "数据 3 数字", name: "stat3Num", widget: "string" }
+          - { label: "数据 3 标签", name: "stat3Label", widget: "string" }
+          - { label: "数据 4 数字", name: "stat4Num", widget: "string" }
+          - { label: "数据 4 标签", name: "stat4Label", widget: "string" }
+          - { label: "联系我们标题", name: "contactTitle", widget: "string" }
+          - { label: "公司地址", name: "address", widget: "string" }
+          - { label: "联系电话", name: "phone", widget: "string" }
+          - { label: "商务邮箱", name: "email", widget: "string" }
+          - { label: "页脚描述", name: "footerDesc", widget: "text" }
+          - { label: "版权信息", name: "copyright", widget: "string" }
+          - { label: "ICP 备案号", name: "icp", widget: "string" }
