@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>沐光科技 — 以光为引，向新而行</title>
+<meta name="description" content="沐光科技专注于高效光学材料与新能源器件的研发与量产。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:      #FAF6F0;
+    --cream-deep: #F2E8DA;
+    --ink:        #1F1B16;
+    --ink-soft:   #6B6157;
+    --amber:      #C2410C;
+    --amber-soft: #E8863B;
+    --gold:       #E9A13B;
+    --line:       rgba(31,27,22,.10);
+    --serif: "Noto Serif SC","Source Han Serif SC","Songti SC",Georgia,serif;
+    --sans:  "Inter",-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; scroll-padding-top:96px; -webkit-text-size-adjust:100%; }
+  body{ font-family:var(--sans); background:var(--cream); color:var(--ink); line-height:1.75; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  ::selection{ background:rgba(194,65,12,.16); }
+  a{ color:inherit; }
+  img,svg{ display:block; max-width:100%; }
+  .container{ width:100%; max-width:1180px; margin:0 auto; padding:0 28px; }
+  .eyebrow{ display:inline-block; font-size:12.5px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--amber); margin-bottom:16px; }
+  .sec-title{ font-family:var(--serif); font-weight:600; font-size:clamp(1.75rem,3.4vw,2.6rem); line-height:1.3; letter-spacing:-.01em; }
+  .sec-sub{ color:var(--ink-soft); font-size:16.5px; max-width:560px; margin-top:18px; }
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:14px 28px; border-radius:999px; font-family:inherit; font-size:15px; font-weight:600; text-decoration:none; border:1px solid transparent; cursor:pointer; transition:all .3s cubic-bezier(.2,.7,.3,1); white-space:nowrap; }
+  .btn-primary{ background:var(--ink); color:var(--cream); }
+  .btn-primary:hover{ background:var(--amber); transform:translateY(-2px); box-shadow:0 16px 30px -14px rgba(194,65,12,.7); }
+  .btn-ghost{ background:transparent; color:var(--ink); border-color:rgba(31,27,22,.18); }
+  .btn-ghost:hover{ border-color:var(--ink); background:rgba(31,27,22,.045); transform:translateY(-2px); }
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .85s cubic-bezier(.2,.7,.3,1), transform .85s cubic-bezier(.2,.7,.3,1); }
+  .reveal.in{ opacity:1; transform:none; }
+  .header{ position:fixed; inset:0 0 auto 0; z-index:100; padding:20px 0; transition:padding .35s ease, background .35s ease, box-shadow .35s ease, backdrop-filter .35s ease; }
+  .header.scrolled{ padding:12px 0; background:rgba(250,246,240,.82); -webkit-backdrop-filter:blur(16px) saturate(1.4); backdrop-filter:blur(16px) saturate(1.4); box-shadow:0 1px 0 var(--line), 0 12px 30px -24px rgba(60,35,10,.5); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .logo{ display:inline-flex; align-items:center; gap:11px; font-size:18px; font-weight:700; letter-spacing:.02em; text-decoration:none; color:var(--ink); }
+  .logo-mark{ width:24px; height:24px; border-radius:50%; background:conic-gradient(from 210deg, #C2410C, #E9A13B, #E8863B, #C2410C); box-shadow:0 0 0 4px rgba(194,65,12,.10); flex:none; }
+  .nav-links{ display:flex; align-items:center; gap:34px; list-style:none; }
+  .nav-links a{ position:relative; font-size:15px; font-weight:500; color:var(--ink-soft); text-decoration:none; transition:color .25s; }
+  .nav-links a::after{ content:""; position:absolute; left:0; bottom:-6px; width:0; height:1.5px; background:var(--amber); border-radius:2px; transition:width .3s cubic-bezier(.2,.7,.3,1); }
+  .nav-links a:hover{ color:var(--ink); }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-right{ display:flex; align-items:center; gap:14px; }
+  .nav-cta{ padding:11px 22px; font-size:14.5px; }
+  .menu-toggle{ display:none; flex-direction:column; align-items:center; justify-content:center; gap:5px; width:42px; height:42px; border:1px solid var(--line); border-radius:13px; background:transparent; cursor:pointer; }
+  .menu-toggle span{ display:block; width:17px; height:1.8px; border-radius:2px; background:var(--ink); transition:transform .3s ease, opacity .3s ease; }
+  .menu-toggle.active span:nth-child(1){ transform:translateY(6.8px) rotate(45deg); }
+  .menu-toggle.active span:nth-child(2){ opacity:0; }
+  .menu-toggle.active span:nth-child(3){ transform:translateY(-6.8px) rotate(-45deg); }
+  .hero{ position:relative; padding:172px 0 108px; overflow:hidden; }
+  .hero::before{ content:""; position:absolute; top:-260px; right:-180px; width:760px; height:760px; border-radius:50%; background:radial-gradient(circle, rgba(233,161,59,.30) 0%, rgba(194,65,12,.11) 42%, rgba(194,65,12,0) 70%); pointer-events:none; }
+  .hero::after{ content:""; position:absolute; left:-220px; bottom:-320px; width:620px; height:620px; border-radius:50%; background:radial-gradient(circle, rgba(46,139,87,.10), rgba(46,139,87,0) 68%); pointer-events:none; }
+  .hero-grid{ position:relative; z-index:1; display:grid; grid-template-columns:1.05fr .95fr; align-items:center; gap:48px; }
+  .badge{ display:inline-flex; align-items:center; gap:9px; padding:8px 16px 8px 13px; margin-bottom:28px; border-radius:999px; background:#fff; border:1px solid var(--line); font-size:13px; font-weight:600; color:var(--ink-soft); letter-spacing:.02em; box-shadow:0 12px 26px -20px rgba(60,35,10,.6); }
+  .badge-dot{ width:7px; height:7px; border-radius:50%; background:#2E8B57; box-shadow:0 0 0 3.5px rgba(46,139,87,.16); flex:none; }
+  .hero h1{ font-family:var(--serif); font-weight:700; font-size:clamp(2.4rem,5.4vw,4.15rem); line-height:1.14; letter-spacing:-.015em; }
+  .hero h1 em{ font-style:normal; color:var(--amber); position:relative; }
+  .hero .lead{ margin-top:26px; max-width:500px; font-size:17px; line-height:1.85; color:var(--ink-soft); }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:14px; margin-top:40px; }
+  .hero-art{ position:relative; height:470px; display:flex; align-items:center; justify-content:center; }
+  .art-ring{ position:absolute; width:452px; height:452px; border-radius:50%; border:1px dashed rgba(194,65,12,.30); animation:spin 46s linear infinite; }
+  .art-ring::before{ content:""; position:absolute; top:-4px; left:50%; width:8px; height:8px; margin-left:-4px; border-radius:50%; background:var(--amber); }
+  .art-blob{ position:relative; width:340px; height:340px; border-radius:50%; background:radial-gradient(circle at 32% 27%, #FFDCAE 0%, #E8863B 44%, #A8340B 82%); box-shadow: inset -22px -32px 64px rgba(88,26,0,.38), inset 14px 18px 40px rgba(255,222,180,.42), 0 46px 90px -36px rgba(194,65,12,.72); animation:float 7.5s ease-in-out infinite; }
+  .art-card{ position:absolute; left:-4px; bottom:46px; padding:20px 26px; border-radius:22px; background:rgba(255,255,255,.84); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,.95); box-shadow:0 28px 56px -26px rgba(60,35,10,.5); animation:float 6.4s ease-in-out infinite .5s; }
+  .art-card .tag{ display:flex; align-items:center; gap:7px; font-size:12.5px; font-weight:600; letter-spacing:.08em; color:var(--ink-soft); margin-bottom:8px; }
+  .art-card .tag i{ width:6px; height:6px; border-radius:50%; background:var(--amber-soft); animation:pulse 2s ease-in-out infinite; }
+  .art-card strong{ display:block; font-size:32px; font-weight:700; line-height:1.1; letter-spacing:-.02em; color:var(--ink); }
+  .art-card small{ font-size:12.5px; color:var(--ink-soft); }
+  .chip{ position:absolute; padding:9px 17px; border-radius:999px; background:#fff; border:1px solid var(--line); font-size:13px; font-weight:600; color:var(--ink-soft); box-shadow:0 16px 30px -20px rgba(60,35,10,.65); }
+  .chip-a{ top:56px; right:2px; animation:float 6.8s ease-in-out infinite; }
+  .chip-b{ top:190px; left:-32px; animation:float 7.6s ease-in-out infinite .9s; }
+  .section{ padding:112px 0; }
+  .section-tight{ padding:0 0 112px; }
+  .sec-head{ max-width:660px; margin-bottom:62px; }
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+  .about-copy p{ color:var(--ink-soft); font-size:16.5px; margin-top:22px; }
+  .about-copy p:first-of-type{ margin-top:26px; }
+  .quote{ margin-top:34px; padding:22px 26px; border-left:3px solid var(--amber); background:linear-gradient(90deg, rgba(194,65,12,.06), rgba(194,65,12,0)); border-radius:0 14px 14px 0; font-family:var(--serif); font-size:17px; line-height:1.75; color:var(--ink); }
+  .timeline{ position:relative; padding-left:34px; }
+  .timeline::before{ content:""; position:absolute; left:6px; top:10px; bottom:10px; width:1.5px; background:linear-gradient(180deg, var(--amber), rgba(194,65,12,.08)); }
+  .tl-item{ position:relative; padding-bottom:34px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{ content:""; position:absolute; left:-34px; top:9px; width:13px; height:13px; border-radius:50%; background:var(--cream); border:2.5px solid var(--amber); transition:background .3s; }
+  .tl-item:hover::before{ background:var(--amber); }
+  .tl-year{ font-size:13px; font-weight:700; letter-spacing:.14em; color:var(--amber); }
+  .tl-text{ font-size:15.5px; color:var(--ink-soft); margin-top:4px; }
+  .cards{ display:grid; grid-template-columns:repeat(auto-fit, minmax(248px,1fr)); gap:22px; }
+  .card{ position:relative; background:#fff; border:1px solid var(--line); border-radius:24px; padding:36px 30px 34px; overflow:hidden; transition:transform .4s cubic-bezier(.2,.7,.3,1), border-color .4s, box-shadow .4s; }
+  .card::after{ content:""; position:absolute; inset:auto -40% -60% auto; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, rgba(233,161,59,.22), rgba(233,161,59,0) 70%); opacity:0; transition:opacity .45s; }
+  .card:hover{ transform:translateY(-7px); border-color:rgba(194,65,12,.32); box-shadow:0 34px 64px -34px rgba(90,50,10,.45); }
+  .card:hover::after{ opacity:1; }
+  .card-icon{ width:50px; height:50px; display:flex; align-items:center; justify-content:center; border-radius:15px; background:rgba(194,65,12,.09); color:var(--amber); margin-bottom:24px; transition:background .35s, color .35s; }
+  .card:hover .card-icon{ background:var(--amber); color:#fff; }
+  .card-icon svg{ width:23px; height:23px; }
+  .card h3{ font-family:var(--serif); font-size:19.5px; font-weight:600; margin-bottom:12px; letter-spacing:-.01em; }
+  .card p{ font-size:14.8px; line-height:1.8; color:var(--ink-soft); }
+  .stats{ position:relative; border-radius:36px; background:var(--ink); color:var(--cream); padding:72px 56px; overflow:hidden; }
+  .stats::before{ content:""; position:absolute; top:-220px; right:-140px; width:520px; height:520px; border-radius:50%; background:radial-gradient(circle, rgba(233,161,59,.34), rgba(233,161,59,0) 68%); }
+  .stats::after{ content:""; position:absolute; bottom:-260px; left:-120px; width:460px; height:460px; border-radius:50%; background:radial-gradient(circle, rgba(194,65,12,.34), rgba(194,65,12,0) 70%); }
+  .stats-inner{ position:relative; z-index:1; display:grid; grid-template-columns:repeat(4,1fr); gap:36px; }
+  .stat-num{ font-size:clamp(2.1rem,3.8vw,3rem); font-weight:700; line-height:1.1; letter-spacing:-.025em; color:var(--gold); }
+  .stat-label{ margin-top:10px; font-size:14px; color:rgba(250,246,240,.62); letter-spacing:.02em; }
+  .contact-grid{ display:grid; grid-template-columns:1fr 1.05fr; gap:74px; align-items:start; }
+  .info-list{ margin-top:36px; display:flex; flex-direction:column; gap:22px; }
+  .info-item{ display:flex; gap:16px; align-items:flex-start; }
+  .info-icon{ flex:none; width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:12px; background:rgba(194,65,12,.09); color:var(--amber); }
+  .info-icon svg{ width:18px; height:18px; }
+  .info-item strong{ display:block; font-size:14px; font-weight:600; color:var(--ink); margin-bottom:2px; }
+  .info-item span{ font-size:14.5px; color:var(--ink-soft); }
+  .form-card{ background:#fff; border:1px solid var(--line); border-radius:26px; padding:40px 38px; box-shadow:0 40px 80px -50px rgba(90,50,10,.5); }
+  .form-card h3{ font-family:var(--serif); font-size:21px; font-weight:600; margin-bottom:6px; }
+  .form-card > p{ font-size:14.5px; color:var(--ink-soft); margin-bottom:28px; }
+  .field{ margin-bottom:18px; }
+  .field label{ display:block; font-size:13px; font-weight:600; letter-spacing:.04em; color:var(--ink-soft); margin-bottom:8px; }
+  .field input, .field textarea{ width:100%; font-family:inherit; font-size:15px; color:var(--ink); padding:14px 16px; border-radius:13px; border:1px solid var(--line); background:var(--cream); outline:none; transition:border-color .25s, box-shadow .25s, background .25s; }
+  .field textarea{ resize:vertical; min-height:112px; }
+  .field input::placeholder, .field textarea::placeholder{ color:#A99E92; }
+  .field input:focus, .field textarea:focus{ background:#fff; border-color:var(--amber); box-shadow:0 0 0 4px rgba(194,65,12,.10); }
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .form-card .btn{ width:100%; margin-top:10px; }
+  .footer{ background:var(--ink); color:rgba(250,246,240,.62); padding:76px 0 32px; }
+  .footer-grid{ display:grid; grid-template-columns:1.6fr repeat(3,1fr); gap:48px; padding-bottom:52px; border-bottom:1px solid rgba(250,246,240,.10); }
+  .footer .logo{ color:var(--cream); margin-bottom:18px; }
+  .footer-brand p{ font-size:14.5px; line-height:1.8; max-width:300px; }
+  .footer-col h4{ font-size:13px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:rgba(250,246,240,.92); margin-bottom:20px; }
+  .footer-col a{ display:block; font-size:14.5px; color:rgba(250,246,240,.58); text-decoration:none; margin-bottom:12px; transition:color .25s, transform .25s; }
+  .footer-col a:hover{ color:var(--gold); transform:translateX(3px); }
+  .footer-bottom{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; padding-top:28px; font-size:13.5px; color:rgba(250,246,240,.42); }
+  @keyframes float{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-16px); } }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  @keyframes pulse{ 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:.45; transform:scale(.75); } }
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition-duration:.01ms !important; } html{ scroll-behavior:auto; } }
+  @media (max-width: 1024px){ .about-grid{ grid-template-columns:1fr; gap:56px; } .contact-grid{ grid-template-columns:1fr; gap:56px; } .footer-grid{ grid-template-columns:1fr 1fr; gap:40px; } }
+  @media (max-width: 900px){ .hero{ padding:140px 0 80px; } .hero-grid{ grid-template-columns:1fr; gap:52px; } .hero-art{ height:370px; order:-1; } .art-blob{ width:260px; height:260px; } .art-ring{ width:350px; height:350px; } .art-card{ left:0; bottom:18px; padding:16px 20px; } .art-card strong{ font-size:26px; } .chip-a{ top:16px; right:6px; } .chip-b{ top:130px; left:-6px; } .section{ padding:86px 0; } .section-tight{ padding:0 0 86px; } .stats{ padding:54px 34px; border-radius:28px; } .stats-inner{ grid-template-columns:1fr 1fr; gap:34px 24px; } .menu-toggle{ display:flex; } .nav-cta{ display:none; } .nav-links{ position:absolute; top:calc(100% + 8px); left:20px; right:20px; flex-direction:column; align-items:stretch; gap:2px; padding:14px; border-radius:20px; background:rgba(250,246,240,.97); -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px); border:1px solid var(--line); box-shadow:0 36px 70px -32px rgba(60,35,10,.55); opacity:0; visibility:hidden; transform:translateY(-10px); transition:opacity .3s, transform .3s, visibility .3s; } .nav-links.open{ opacity:1; visibility:visible; transform:none; } .nav-links a{ display:block; padding:11px 14px; border-radius:12px; font-size:15.5px; } .nav-links a::after{ display:none; } .nav-links a:hover{ background:rgba(194,65,12,.07); } }
+  @media (max-width: 620px){ .container{ padding:0 20px; } .hero{ padding:126px 0 68px; } .hero-art{ height:320px; } .art-blob{ width:210px; height:210px; } .art-ring{ width:290px; height:290px; } .chip{ display:none; } .hero-actions .btn{ flex:1 1 100%; } .section{ padding:72px 0; } .section-tight{ padding:0 0 72px; } .sec-head{ margin-bottom:44px; } .stats{ padding:44px 24px; } .stats-inner{ gap:28px 16px; } .form-card{ padding:30px 22px; border-radius:22px; } .form-row{ grid-template-columns:1fr; gap:0; } .footer-grid{ grid-template-columns:1fr; gap:36px; } .footer-bottom{ flex-direction:column; } }
+</style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container">
+    <nav class="nav">
+      <a href="#" class="logo">
+        <span class="logo-mark"></span>
+        <span data-cms="companyName">沐光科技</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">关于我们</a></li>
+        <li><a href="#business">业务板块</a></li>
+        <li><a href="#numbers">数据成绩</a></li>
+        <li><a href="#contact">联系我们</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="#contact" class="btn btn-primary nav-cta">预约咨询</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="打开菜单" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="badge reveal">
+        <span class="badge-dot"></span>
+        <span data-cms="badgeText">2015 年创立 · 深圳</span>
+      </span>
+      <h1 class="reveal" style="transition-delay:.06s">
+        <span data-cms="heroLine1">以光为引，</span><br>
+        <em data-cms="heroLine2">向新而行</em><span data-cms="heroLine3">。</span>
+      </h1>
+      <p class="lead reveal" style="transition-delay:.12s" data-cms="heroLead">
+        沐光科技专注于高效光学材料与新能源器件的研发与量产。我们相信，每一束被用好的光，都在改变世界的效率。
+      </p>
+      <div class="hero-actions reveal" style="transition-delay:.18s">
+        <a href="#business" class="btn btn-primary">了解我们的业务</a>
+        <a href="#contact" class="btn btn-ghost">联系我们 <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="hero-art reveal" style="transition-delay:.1s">
+      <div class="art-ring"></div>
+      <div class="art-blob"></div>
+      <div class="art-card">
+        <div class="tag"><i></i><span data-cms="artCardTag">钙钛矿叠层 · 量产中</span></div>
+        <strong data-cms="artCardNum">34.2%</strong>
+        <small data-cms="artCardLabel">光电转换效率</small>
+      </div>
+      <div class="chip chip-a" data-cms="chipA">光学薄膜</div>
+      <div class="chip chip-b" data-cms="chipB">智能传感</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container about-grid">
+    <div class="about-copy">
+      <span class="eyebrow reveal">关于我们</span>
+      <h2 class="sec-title reveal" style="transition-delay:.06s" data-cms="aboutTitle">
+        十年只做一件事：<br>把光用好。
+      </h2>
+      <p class="reveal" style="transition-delay:.1s" data-cms="aboutP1">
+        从一间 40 平方米的实验室起步，到覆盖三大洲的交付网络，沐光始终把「把光用好」当成唯一的目标。
+      </p>
+      <p class="reveal" style="transition-delay:.14s" data-cms="aboutP2">
+        目前，公司拥有 6 个研发中心、200 余项自主专利，产品广泛应用于消费电子、新能源汽车、工业检测与医疗影像等领域。
+      </p>
+      <div class="quote reveal" style="transition-delay:.18s" data-cms="quoteText">
+        “我们相信技术的价值不在于复杂，而在于让每一度电、每一束光都不被浪费。”
+      </div>
+    </div>
+    <div class="timeline reveal" style="transition-delay:.12s">
+      <div class="tl-item"><div class="tl-year">2015</div><div class="tl-text">于深圳成立，40㎡ 实验室起步</div></div>
+      <div class="tl-item"><div class="tl-year">2018</div><div class="tl-text">首条量产线投产，年产能 200 万片</div></div>
+      <div class="tl-item"><div class="tl-year">2021</div><div class="tl-text">获评国家级高新技术企业</div></div>
+      <div class="tl-item"><div class="tl-year">2024</div><div class="tl-text">海外研发中心落地慕尼黑</div></div>
+      <div class="tl-item"><div class="tl-year">2026</div><div class="tl-text">全固态光学模组进入量产阶段</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="business" style="padding-top:0">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow reveal">业务板块</span>
+      <h2 class="sec-title reveal" style="transition-delay:.06s" data-cms="businessTitle">四条业务线，一个技术底座</h2>
+      <p class="sec-sub reveal" style="transition-delay:.1s" data-cms="businessSub">
+        围绕「光」的采集、调控与转换，我们构建了从材料到模组的完整能力。
+      </p>
+    </div>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 7.5l9 4.5 9-4.5L12 3Z"/><path d="m3 12.5 9 4.5 9-4.5"/><path d="m3 17 9 4.5 9-4.5"/></svg></div>
+        <h3 data-cms="b1Title">光学薄膜</h3>
+        <p data-cms="b1Desc">纳米级镀膜工艺，为消费电子与车载镜头提供高透过率、耐刮擦的表面解决方案。</p>
+      </article>
+      <article class="card reveal" style="transition-delay:.08s">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22"/><path d="m4.9 4.9 1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/></svg></div>
+        <h3 data-cms="b2Title">光伏材料</h3>
+        <p data-cms="b2Desc">高效率钙钛矿叠层组件，量产转换效率稳定在 34% 以上，衰减率低于行业均值。</p>
+      </article>
+      <article class="card reveal" style="transition-delay:.16s">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.2"/><path d="M16.3 7.7a6 6 0 0 1 0 8.6M7.7 16.3a6 6 0 0 1 0-8.6"/><path d="M19.2 4.8a10 10 0 0 1 0 14.4M4.8 19.2a10 10 0 0 1 0-14.4"/></svg></div>
+        <h3 data-cms="b3Title">智能传感</h3>
+        <p data-cms="b3Desc">面向工业检测与医疗影像的光学传感模组，测量精度可达微米级。</p>
+      </article>
+      <article class="card reveal" style="transition-delay:.24s">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5a3 3 0 0 1-3 3H9l-5 3.5V7a3 3 0 0 1 3-3h10.5a3 3 0 0 1 3 3v7.5Z"/><path d="M8.5 10h7M8.5 13.5h4.5"/></svg></div>
+        <h3 data-cms="b4Title">技术咨询</h3>
+        <p data-cms="b4Desc">从材料选型、工艺验证到产线落地，为客户提供全流程的工程支持与交付服务。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight" id="numbers">
+  <div class="container">
+    <div class="stats reveal">
+      <div class="stats-inner">
+        <div class="stat"><div class="stat-num" data-cms="stat1Num">10+</div><div class="stat-label" data-cms="stat1Label">年行业深耕</div></div>
+        <div class="stat"><div class="stat-num" data-cms="stat2Num">34.2%</div><div class="stat-label" data-cms="stat2Label">光电转换效率</div></div>
+        <div class="stat"><div class="stat-num" data-cms="stat3Num">320+</div><div class="stat-label" data-cms="stat3Label">服务客户</div></div>
+        <div class="stat"><div class="stat-num" data-cms="stat4Num">6</div><div class="stat-label" data-cms="stat4Label">全球研发中心</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact" style="padding-top:0">
+  <div class="container contact-grid">
+    <div>
+      <span class="eyebrow reveal">联系我们</span>
+      <h2 class="sec-title reveal" style="transition-delay:.06s" data-cms="contactTitle">
+        聊聊你的项目，<br>我们通常在 1 个工作日内回复。
+      </h2>
+      <div class="info-list">
+        <div class="info-item reveal" style="transition-delay:.1s">
+          <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.8"/></svg></div>
+          <div><strong>公司地址</strong><span data-cms="address">深圳市南山区科苑南路 3008 号沐光大厦 12 层</span></div>
+        </div>
+        <div class="info-item reveal" style="transition-delay:.14s">
+          <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 16.9v2.6a1.8 1.8 0 0 1-2 1.8 18 18 0 0 1-7.8-2.8 17.7 17.7 0 0 1-5.4-5.4A18 18 0 0 1 3.5 5.3a1.8 1.8 0 0 1 1.8-2h2.6a1.8 1.8 0 0 1 1.8 1.5c.1.9.3 1.8.6 2.6a1.8 1.8 0 0 1-.4 1.9l-1.1 1.1a14 14 0 0 0 5.4 5.4l1.1-1.1a1.8 1.8 0 0 1 1.9-.4c.8.3 1.7.5 2.6.6a1.8 1.8 0 0 1 1.5 1.9Z"/></svg></div>
+          <div><strong>联系电话</strong><span data-cms="phone">+86 755-8888-8888</span></div>
+        </div>
+        <div class="info-item reveal" style="transition-delay:.18s">
+          <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3.5 7.5 8.5 6 8.5-6"/></svg></div>
+          <div><strong>商务邮箱</strong><span data-cms="email">hello@muguang.tech</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-card reveal" style="transition-delay:.12s">
+      <h3>预约咨询</h3>
+      <p>填写下面的信息，我们的工程师会尽快与你联系。</p>
+      <form id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="field"><label for="name">姓名</label><input id="name" name="name" type="text" placeholder="你的称呼" required></div>
+          <div class="field"><label for="phone">联系方式</label><input id="phone" name="phone" type="text" placeholder="手机或邮箱" required></div>
+        </div>
+        <div class="field"><label for="company">公司名称</label><input id="company" name="company" type="text" placeholder="选填"></div>
+        <div class="field"><label for="message">需求描述</label><textarea id="message" name="message" placeholder="简单描述你的项目或需求…"></textarea></div>
+        <button type="submit" class="btn btn-primary">提交信息</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo"><span class="logo-mark"></span><span data-cms="companyNameFooter">沐光科技</span></a>
+        <p data-cms="footerDesc">以光为引，向新而行。让每一束光，都被好好用上。</p>
+      </div>
+      <div class="footer-col"><h4>业务</h4><a href="#business">光学薄膜</a><a href="#business">光伏材料</a><a href="#business">智能传感</a><a href="#business">技术咨询</a></div>
+      <div class="footer-col"><h4>公司</h4><a href="#about">关于我们</a><a href="#numbers">数据成绩</a><a href="#contact">联系方式</a><a href="#">加入我们</a></div>
+      <div class="footer-col"><h4>关注</h4><a href="#">微信公众号</a><a href="#">领英主页</a><a href="#">行业白皮书</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span data-cms="copyright">© 2026 沐光科技（深圳）有限公司 · 版权所有</span>
+      <span data-cms="icp">粤 ICP 备 12345678 号</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // 从 site.json 加载内容
+  fetch('./content/site.json')
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      document.querySelectorAll('[data-cms]').forEach(function (el) {
+        var key = el.getAttribute('data-cms');
+        if (data[key] !== undefined && data[key] !== null) {
+          el.textContent = data[key];
+        }
+      });
+    })
+    .catch(function (err) {
+      console.warn('内容加载失败，使用默认文字。', err);
+    });
+
+  // 顶部导航滚动状态
+  var header = document.getElementById('header');
+  var onScroll = function () {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // 移动端菜单
+  var toggle = document.getElementById('menuToggle');
+  var navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', function () {
+    var open = navLinks.classList.toggle('open');
+    toggle.classList.toggle('active', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
+  });
+  navLinks.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      navLinks.classList.remove('open');
+      toggle.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // 滚动入场动画
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -70px 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // 表单提交（演示）
+  var form = document.getElementById('contactForm');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = document.getElementById('name');
+    var phone = document.getElementById('phone');
+    if (!name.value.trim() || !phone.value.trim()) {
+      [name, phone].forEach(function (el) {
+        if (!el.value.trim()) {
+          el.style.borderColor = '#C2410C';
+          el.style.boxShadow = '0 0 0 4px rgba(194,65,12,.10)';
+          setTimeout(function () {
+            el.style.borderColor = '';
+            el.style.boxShadow = '';
+          }, 2200);
+        }
+      });
+      return;
+    }
+    var btn = form.querySelector('button[type="submit"]');
+    var original = btn.textContent;
+    btn.textContent = '已提交，感谢！';
+    btn.disabled = true;
+    form.reset();
+    setTimeout(function () {
+      btn.textContent = original;
+      btn.disabled = false;
+    }, 2600);
+  });
+
+})();
+</script>
+
+</body>
+</html>
